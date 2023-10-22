@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>QR Code Generator</title>
+</head>
+<body>
+    <!-- navbar section -->
+    <nav class="h-100 navbar navbar-expand-lg navbar-dark bg-dark text-white shadow sticky-top">
+        <div class="container-sm">
+                    <a class="navbar-brand" href="index.html">QR Code Generator</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto flex- ">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="" >Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#contact">About</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar section end -->
+
+    <div id="home" class="container-fluid bg-dark text-white min-vh-100" >
+        <div class="row justify-content-center text-center p-2 pt-5 position-static ">
+            <div class="col-md-12 ">
+                <canvas id="canvas" width="200" height="200" style="border: 2px solid rgba(17, 97, 247, 0.993)"></canvas>
+            </div>
+        </div>
+        <div class="row justify-content-center text-center">
+            <div class="col-md-3 pt-3 ">
+                <input class="form-control" placeholder="contoh: google.com" id="qrInput" onchange="generateQR()"/>
+                    <br>
+                <button id="btn-kirim" type="submit" class="btn btn-success pt-2">Submit</button>
+            </div>
+        </div>
+        <div id="features" class="row justify-content-center text-center">
+            <div class="col-md-4 pt-4">
+                <!-- <ul>
+                    <li>Silahkan masukan Teks, Url, Email atau Nomor telepon.</li>
+                    <li>Setelah itu silahkan tekan enter atau klik tombol submit.</li>
+                </ul> -->
+                <!-- Button trigger modal -->
+                <center>
+                    <button type="button" class="btn btn-secondary text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Cara Menggunakan
+                    </button>
+                </center>
+                <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header text-light ">
+                                <h5 class="modal-title" id="exampleModalLabel">Cara Menggunakan 👇</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <p>
+                                    <ul class="list-unstyled">
+                                        <li>Silahkan masukan Teks, Url, Email atau Nomor telepon.</li>
+                                        <li>Setelah itu silahkan tekan enter atau klik tombol submit.</li>
+                                    </ul>
+                                </p>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark">
+        <footer class="text-center text-white pb-4"><p class="pt-2 fs-6">Copyright &copy; 2022 | Created with <i class="bi bi-heart-fill text-danger"></i>  by <a href="https://rezweb.netlify.com" class="text-white fs-6">Irez Abdullah</a></p> </footer>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="node_modules/qrcode/build/qrcode.js"></script>
+    <script>
+        message="Generate Success"
+        function generateQR() {
+            let canvas = document.getElementById("canvas")
+            let qrInput = document.getElementById("qrInput")
+            QRCode.toCanvas(canvas, qrInput.value, (err) => {
+                if(err) console.error(err)
+            console.log('scan berhasil!')
+            alert(message);
+            return(false);
+            })
+        }
+    </script>
+    <script>
+        document.onmousedown=disableclick;
+        message="Error!"
+
+    function disableclick(event){
+        if(event.button==2){
+        alert(message);
+        return false;
+        }
+    }
+    </script>
+</body>
+</html>
